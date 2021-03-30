@@ -31,10 +31,6 @@ Index/*
 *.dSYM.zip
 *.dSYM
 
-## Playgrounds
-#timeline.xctimeline
-#playground.xcworkspace
-
 # Swift Package Manager
 #
 # Add this line if you want to avoid checking in source code from Swift Package Manager dependencies.
@@ -48,7 +44,6 @@ Index/*
 # https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
 #
 
-Pods/
 
 # Carthage
 #
