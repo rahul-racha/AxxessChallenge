@@ -6,7 +6,7 @@ target 'AxxessChallenge' do
   use_frameworks!
 
   # Pods for AxxessChallenge
-  pod 'RealmSwift'
+  pod 'RealmSwift', '10.7.2'
   pod 'Alamofire', '5.0.2'
   pod 'SnapKit', '~> 5.0.0'
 
