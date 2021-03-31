@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ImageTypeView: UIView {
     
@@ -15,7 +16,21 @@ class ImageTypeView: UIView {
         imageView.clipsToBounds = true
         imageView.layer.borderWidth = 1.0
         imageView.layer.borderColor = UIColor.lightGray.cgColor
+        imageView.contentMode = .scaleAspectFill
+        imageView.backgroundColor = UIColor.white
         return imageView
+    }()
+    
+    let activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.color = UIColor.black
+        activityIndicator.isHidden = true
+        activityIndicator.hidesWhenStopped = true
+        return activityIndicator
+    }()
+    
+    lazy var placeholderImage: UIImage? = {
+        return UIImage(named: "placeholder")
     }()
     
     // ID
@@ -63,6 +78,8 @@ class ImageTypeView: UIView {
         return UIStackView.getDefault()
     }()
     
+    let defaultText = "Not Available"
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -74,6 +91,7 @@ class ImageTypeView: UIView {
     
     func setupView() {
         addSubview(imageView)
+        addSubview(activityIndicator)
         
         addSubview(idStackView)
         idStackView.addArrangedSubview(idHeaderLabel)
@@ -92,10 +110,60 @@ class ImageTypeView: UIView {
     
     func setupConstraints() {
         imageView.snp.makeConstraints { make in
-            make.left.top.right.equalToSuperview().inset(20)
+            make.left.right.equalToSuperview().inset(150)
+            make.top.equalToSuperview().offset(20)
             make.height.equalTo(imageView.snp.width).multipliedBy(1 / 1)
         }
         
+        activityIndicator.snp.makeConstraints { make in
+            make.center.equalTo(imageView)
+        }
         
+        idStackView.snp.makeConstraints { make in
+            make.left.equalToSuperview().inset(25)
+            make.right.equalToSuperview().inset(25).priority(.low)
+            make.top.equalTo(imageView.snp.bottom).offset(20)
+        }
+        
+        typeStackView.snp.makeConstraints { make in
+            make.left.equalTo(idStackView)
+            make.right.equalToSuperview().inset(25).priority(.low)
+            make.top.equalTo(idStackView.snp.bottom).offset(15)
+        }
+        
+        dateStackView.snp.makeConstraints { make in
+            make.left.equalTo(idStackView)
+            make.right.equalToSuperview().inset(25).priority(.low)
+            make.top.equalTo(typeStackView.snp.bottom).offset(15)
+            make.bottom.greaterThanOrEqualToSuperview().inset(20)
+        }
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        imageView.layer.cornerRadius = imageView.frame.size.width / 2
+    }
+    
+    func configureValues(imageUrl imageStr: String?, id: String?,
+                         type: String?, date: String?) {
+        activityIndicator.startAnimating()
+        activityIndicator.isHidden = false
+        if let str = imageStr, let url = URL(string: str) {
+            imageView.kf.setImage(with: url) { [weak self] result in
+                DispatchQueue.main.async {
+                    switch result {
+                    case .failure(_):
+                        self?.imageView.image = self?.placeholderImage
+                    default:
+                        break
+                    }
+                }
+            }
+        } else {
+            imageView.image = placeholderImage
+        }
+        idLabel.text = id ?? defaultText
+        typeLabel.text = type ?? defaultText
+        dateLabel.text = date ?? defaultText
     }
 }

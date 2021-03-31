@@ -16,9 +16,9 @@ extension UILabel {
         let label = UILabel()
         label.font = isBold ? UIFont(name: "Helvetica-Bold", size: size) :
             UIFont(name: "Helvetica", size: size)
-        label.textColor = UIColor.lightGray
-        label.numberOfLines = 1
-        label.textAlignment = .left
+        label.textColor = textColor
+        label.numberOfLines = lines
+        label.textAlignment = textAlignment
         return label
     }
 }

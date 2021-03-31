@@ -9,6 +9,7 @@ target 'AxxessChallenge' do
   pod 'RealmSwift', '10.7.2'
   pod 'Alamofire', '5.0.2'
   pod 'SnapKit', '~> 5.0.0'
+  pod 'Kingfisher', '6.1.1'
 
   target 'AxxessChallengeTests' do
     inherit! :search_paths
