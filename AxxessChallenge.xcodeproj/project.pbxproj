@@ -10,6 +10,8 @@
 		2F2B8ED12613983400F5C528 /* TextTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2B8ED02613983400F5C528 /* TextTypeView.swift */; };
 		2F2B8ED62613984400F5C528 /* ImageTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2B8ED52613984400F5C528 /* ImageTypeView.swift */; };
 		2F2B8EDB26139DE600F5C528 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2B8EDA26139DE600F5C528 /* UIExtensions.swift */; };
+		2F2B8F2E2614EDB800F5C528 /* RealmHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2B8F2D2614EDB800F5C528 /* RealmHelper.swift */; };
+		2F2B8F332614EE7600F5C528 /* NetworkUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2B8F322614EE7600F5C528 /* NetworkUtil.swift */; };
 		2F9D3930260F8F4B00E59CD3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9D392F260F8F4B00E59CD3 /* AppDelegate.swift */; };
 		2F9D3932260F8F4B00E59CD3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9D3931260F8F4B00E59CD3 /* SceneDelegate.swift */; };
 		2F9D3937260F8F4B00E59CD3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F9D3935260F8F4B00E59CD3 /* Main.storyboard */; };
@@ -59,6 +61,8 @@
 		2F2B8ED02613983400F5C528 /* TextTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextTypeView.swift; sourceTree = "<group>"; };
 		2F2B8ED52613984400F5C528 /* ImageTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTypeView.swift; sourceTree = "<group>"; };
 		2F2B8EDA26139DE600F5C528 /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
+		2F2B8F2D2614EDB800F5C528 /* RealmHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmHelper.swift; sourceTree = "<group>"; };
+		2F2B8F322614EE7600F5C528 /* NetworkUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtil.swift; sourceTree = "<group>"; };
 		2F9D392C260F8F4B00E59CD3 /* AxxessChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AxxessChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F9D392F260F8F4B00E59CD3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2F9D3931260F8F4B00E59CD3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -123,6 +127,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2F2B8F1B2614E1BE00F5C528 /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				2F2B8F2D2614EDB800F5C528 /* RealmHelper.swift */,
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
 		2F9D3923260F8F4A00E59CD3 = {
 			isa = PBXGroup;
 			children = (
@@ -148,6 +160,7 @@
 		2F9D392E260F8F4B00E59CD3 /* AxxessChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				2F2B8F1B2614E1BE00F5C528 /* Realm */,
 				2F9D39CA2610AE0C00E59CD3 /* Coordinator */,
 				2F9D392F260F8F4B00E59CD3 /* AppDelegate.swift */,
 				2F9D398C260FC5D400E59CD3 /* Util */,
@@ -225,6 +238,7 @@
 			children = (
 				2F9D398D260FC69500E59CD3 /* NetworkCall.swift */,
 				2FCA6B6126110D0B009E29C2 /* ChallengeService.swift */,
+				2F2B8F322614EE7600F5C528 /* NetworkUtil.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -514,6 +528,7 @@
 				2F9D39C32610357000E59CD3 /* DetailViewController.swift in Sources */,
 				2FCA6B6C26112499009E29C2 /* ListTableViewCell.swift in Sources */,
 				2F9D398E260FC69500E59CD3 /* NetworkCall.swift in Sources */,
+				2F2B8F2E2614EDB800F5C528 /* RealmHelper.swift in Sources */,
 				2FCA6B6726110E85009E29C2 /* ApiUriConstants.swift in Sources */,
 				2F9D399E260FF48A00E59CD3 /* DetailViewModel.swift in Sources */,
 				2F9D3999260FF47D00E59CD3 /* ListViewModel.swift in Sources */,
@@ -529,6 +544,7 @@
 				2F9D3981260FC10B00E59CD3 /* ChallengeData.swift in Sources */,
 				2F9D39CC2610AE2D00E59CD3 /* Coordinator.swift in Sources */,
 				2FCA6B582610FB65009E29C2 /* SplitViewController.swift in Sources */,
+				2F2B8F332614EE7600F5C528 /* NetworkUtil.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

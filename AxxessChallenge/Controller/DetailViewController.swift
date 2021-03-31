@@ -18,9 +18,14 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor.lightText
         setupView()
-        viewModel.viewStateBinding.bind { [unowned self] data in
+        viewModel.viewStateBinding.bind { [unowned self] viewState in
             DispatchQueue.main.async {
-                self.updateViewState(data ?? ChallengeData(id: nil, type: nil, date: nil, data: nil))
+                switch viewState {
+                case .empty:
+                    self.updateViewState(ChallengeData())
+                case .success(let data):
+                    self.updateViewState(data)
+                }
             }
         }
     }

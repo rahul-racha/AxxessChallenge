@@ -30,7 +30,10 @@ class NetworkCall {
     
     func execute<T>(method: HTTPMethod, url: String, parameters: [String: Any]? = nil,
                 completion: @escaping (Result<T?, Error>?) -> Void) where T: Decodable {
-        
+        if !NetworkUtil.isConnectedToInternet {
+            completion(.failure(NetworkError.notReachable))
+            return
+        }
         AF.request(url, method: method, parameters: parameters).responseData { response in
             switch response.result {
             case .success(let data):

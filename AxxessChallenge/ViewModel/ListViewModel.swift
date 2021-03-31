@@ -44,8 +44,20 @@ extension ListViewModel {
         ChallengeService.shared.getData { [weak self] data in
             guard let weakSelf = self else { return }
             weakSelf.challengeData = data ?? []
+            let copy = weakSelf.challengeData.map { $0.copy() as? ChallengeData ?? ChallengeData() }
+            DispatchQueue.global(qos: .utility).async {
+                RealmHelper.deleteAll(type: ChallengeData.self)
+                RealmHelper.saveAll(copy)
+            }
             completion(.loadData)
-        } failure: { error in
+        } failure: { [weak self] error in
+            guard let weakSelf = self else { return }
+            if error as? NetworkError != nil {
+                let objs = RealmHelper.getAll(type: ChallengeData.self)
+                weakSelf.challengeData = objs
+                completion(.loadData)
+                return
+            }
             let message = error?.localizedDescription ?? "Failed to retrieve data"
             completion(.error(message))
         }

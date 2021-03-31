@@ -32,23 +32,19 @@ class SplitViewController: UISplitViewController {
 }
 
 extension SplitViewController: UISplitViewControllerDelegate {
-//    @available(iOS 14.0, *)
-//    func splitViewController(_ svc: UISplitViewController, topColumnForCollapsingToProposedTopColumn proposedTopColumn: UISplitViewController.Column) -> UISplitViewController.Column {
-//        guard let navigationController = secondaryViewController as? UINavigationController,
-//              let detailVC = navigationController.topViewController as? DetailViewController else {
-//            return .primary
-//        }
-//        return detailVC.someData == nil ? .primary : .secondary
-//    }
-    
     func splitViewController(_ splitViewController: UISplitViewController,
       collapseSecondary secondaryViewController: UIViewController,
       onto primaryViewController: UIViewController) -> Bool {
-
-      guard let navigationController = secondaryViewController as? UINavigationController,
-            let detailVC = navigationController.topViewController as? DetailViewController else {
-        return true
-      }
-        return detailVC.viewModel.viewStateBinding.value == nil
+        guard let navigationController = secondaryViewController as? UINavigationController,
+              let detailVC = navigationController.topViewController as? DetailViewController
+        else {
+            return true
+        }
+        switch detailVC.viewModel.viewStateBinding.value {
+        case .empty:
+            return true
+        default:
+            return false
+        }
     }
 }

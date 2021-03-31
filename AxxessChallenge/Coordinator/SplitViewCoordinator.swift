@@ -19,7 +19,8 @@ class SplitViewCoordinator: Coordinator {
         listVC.viewModel = ListViewModel()
         splitVC.primaryViewController = listVC
         let detailVC = DetailViewController()
-        detailVC.viewModel = DetailViewModel(data: nil)
+        detailVC.viewModel = DetailViewModel(
+            viewState: DetailViewModel.ViewState.empty)
         listVC.lvcDelegate = detailVC.viewModel
         splitVC.secondaryViewController = detailVC
     }

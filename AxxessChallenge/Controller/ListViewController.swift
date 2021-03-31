@@ -79,6 +79,8 @@ class ListViewController: UIViewController {
         case .loadData:
             if viewModel.challengeData.count > 0 {
                 lvcDelegate?.didSelectItem(viewModel.challengeData[0])
+            } else {
+                showAlert(message: "No saved data found")
             }
             tableView.reloadData()
             fallthrough
@@ -117,7 +119,7 @@ extension ListViewController: UITableViewDelegate {
         let data = viewModel.challengeData[indexPath.row]
         if UIDevice.current.userInterfaceIdiom == .phone {
             let detailVC = DetailViewController()
-            detailVC.viewModel = DetailViewModel(data: data)
+            detailVC.viewModel = DetailViewModel(viewState: DetailViewModel.ViewState.success(data))
             navigationController?.pushViewController(detailVC, animated: false)
         } else {
             lvcDelegate?.didSelectItem(data)
