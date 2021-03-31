@@ -28,6 +28,7 @@ class ListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        setupSort()
         setupActivityIndicator()
         viewModel.viewStateBinding.bind { [unowned self] viewState in
             DispatchQueue.main.async {
@@ -54,6 +55,11 @@ class ListViewController: UIViewController {
             make.edges.equalTo(view)
         }
     }
+    
+    private func setupSort() {
+        let btn = UIBarButtonItem(title: "Sort", style: .plain, target: self, action: #selector(sortTapped(_:)))
+        navigationItem.rightBarButtonItem = btn
+    }
 
     private func setupActivityIndicator() {
         activityIndicator = UIActivityIndicatorView(style: .large)
@@ -62,6 +68,29 @@ class ListViewController: UIViewController {
         view.addSubview(activityIndicator)
         activityIndicator.frame = view.frame
         activityIndicator.backgroundColor = UIColor.init(white: 0, alpha: 0.3)
+    }
+    
+    @objc func sortTapped(_ sender: UIBarButtonItem?) {
+        let actionSheet = UIAlertController(title: "Sort", message: "Select an option to sort by 'type'", preferredStyle: .actionSheet)
+        let ascOption = UIAlertAction(title: "Ascending", style: .default) { [weak self] _ in
+            self?.viewModel.intent = .sort(true)
+        }
+        
+        let descOption = UIAlertAction(title: "Descending", style: .default) { [weak self] _ in
+            self?.viewModel.intent = .sort(false)
+        }
+        
+        let cancelOption = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        actionSheet.addAction(ascOption)
+        actionSheet.addAction(descOption)
+        actionSheet.addAction(cancelOption)
+        
+        if let popoverController = actionSheet.popoverPresentationController {
+            popoverController.barButtonItem = sender
+          }
+        
+        present(actionSheet, animated: true)
     }
     
     private func showActivityIndicator() {
@@ -119,7 +148,7 @@ extension ListViewController: UITableViewDelegate {
         let data = viewModel.challengeData[indexPath.row]
         if UIDevice.current.userInterfaceIdiom == .phone {
             let detailVC = DetailViewController()
-            detailVC.viewModel = DetailViewModel(viewState: DetailViewModel.ViewState.success(data))
+            detailVC.viewModel = DetailViewModel(viewState: .success(data))
             navigationController?.pushViewController(detailVC, animated: false)
         } else {
             lvcDelegate?.didSelectItem(data)

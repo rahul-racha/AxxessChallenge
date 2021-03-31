@@ -19,6 +19,7 @@ class ListViewModel {
     
     enum UserIntent {
         case newData
+        case sort(Bool)
     }
     
     let viewStateBinding: Box<ViewState>
@@ -30,7 +31,21 @@ class ListViewModel {
             case .newData:
                 viewStateBinding.value = .loading
                 getDataViewState { [weak self] in self?.viewStateBinding.value = $0 }
+            case .sort(let isAsc):
+                isAscending = isAsc
+                sortData(isAscending: isAscending)
+                viewStateBinding.value = ViewState.loadData
             }
+        }
+    }
+    
+    var isAscending: Bool {
+        get {
+            return UserDefaults.standard.object(forKey: "ascending") as? Bool ?? true
+        }
+        
+        set {
+            UserDefaults.standard.set(newValue, forKey: "ascending")
         }
     }
     
@@ -40,10 +55,28 @@ class ListViewModel {
 }
 
 extension ListViewModel {
+    func sortData(isAscending: Bool) {
+        let temp: [ChallengeData]
+        if isAscending {
+            temp = challengeData.sorted { $0.type ?? "" < $1.type ?? "" }
+        } else {
+            temp = challengeData.sorted { $0.type ?? "" > $1.type ?? "" }
+        }
+        challengeData = temp
+    }
+    
+    func sortedData(data: [ChallengeData], isAscending: Bool) -> [ChallengeData] {
+        if isAscending {
+            return data.sorted { $0.type ?? "" < $1.type ?? "" }
+        }
+        return data.sorted { $0.type ?? "" > $1.type ?? "" }
+    }
+    
     func getDataViewState(completion: @escaping (ViewState) -> Void) {
         ChallengeService.shared.getData { [weak self] data in
             guard let weakSelf = self else { return }
-            weakSelf.challengeData = data ?? []
+            weakSelf.challengeData = weakSelf.sortedData(data: data ?? [],
+                                                         isAscending: weakSelf.isAscending)
             let copy = weakSelf.challengeData.map { $0.copy() as? ChallengeData ?? ChallengeData() }
             DispatchQueue.global(qos: .utility).async {
                 RealmHelper.deleteAll(type: ChallengeData.self)
@@ -54,7 +87,8 @@ extension ListViewModel {
             guard let weakSelf = self else { return }
             if error as? NetworkError != nil {
                 let objs = RealmHelper.getAll(type: ChallengeData.self)
-                weakSelf.challengeData = objs
+                weakSelf.challengeData = weakSelf.sortedData(data: objs,
+                                                             isAscending: weakSelf.isAscending)
                 completion(.loadData)
                 return
             }
