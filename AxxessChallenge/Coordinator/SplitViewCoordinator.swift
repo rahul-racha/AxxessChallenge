@@ -19,8 +19,8 @@ class SplitViewCoordinator: Coordinator {
         listVC.viewModel = ListViewModel()
         splitVC.primaryViewController = listVC
         let detailVC = DetailViewController()
-        detailVC.navigationItem.leftBarButtonItem = splitVC.displayModeButtonItem
-        detailVC.navigationItem.leftItemsSupplementBackButton = true
+        detailVC.viewModel = DetailViewModel(data: nil)
+        listVC.lvcDelegate = detailVC.viewModel
         splitVC.secondaryViewController = detailVC
     }
 }

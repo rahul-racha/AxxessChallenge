@@ -8,13 +8,15 @@
 import Foundation
 
 class DetailViewModel {
-    enum ViewState {
-        case success
-        case empty
-    }
     let viewStateBinding: Box<ChallengeData?>
     
-    init() {
-        viewStateBinding = Box(nil)
+    init(data: ChallengeData?) {
+        viewStateBinding = Box(data)
+    }
+}
+
+extension DetailViewModel: ListViewControllerDelegate {
+    func didSelectItem(_ data: ChallengeData) {
+        viewStateBinding.value = data
     }
 }

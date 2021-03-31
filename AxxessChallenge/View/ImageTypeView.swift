@@ -110,7 +110,12 @@ class ImageTypeView: UIView {
     
     func setupConstraints() {
         imageView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview().inset(150)
+            if UIDevice.current.userInterfaceIdiom == .phone {
+                make.width.equalTo(200)
+                make.centerX.equalToSuperview()
+            } else {
+                make.left.right.equalToSuperview().inset(150)
+            }
             make.top.equalToSuperview().offset(20)
             make.height.equalTo(imageView.snp.width).multipliedBy(1 / 1)
         }
@@ -157,10 +162,12 @@ class ImageTypeView: UIView {
                     default:
                         break
                     }
+                    self?.activityIndicator.stopAnimating()
                 }
             }
         } else {
             imageView.image = placeholderImage
+            activityIndicator.stopAnimating()
         }
         idLabel.text = id ?? defaultText
         typeLabel.text = type ?? defaultText

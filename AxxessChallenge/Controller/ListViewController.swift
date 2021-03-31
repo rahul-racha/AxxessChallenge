@@ -8,9 +8,14 @@
 import UIKit
 import SnapKit
 
+protocol ListViewControllerDelegate: class {
+    func didSelectItem(_ data: ChallengeData)
+}
+
 class ListViewController: UIViewController {
     
     var viewModel: ListViewModel!
+    weak var lvcDelegate: ListViewControllerDelegate?
     typealias UserIntent = ListViewModel.UserIntent
     private var tableView: UITableView! {
         didSet {
@@ -22,7 +27,6 @@ class ListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.green
         setupTableView()
         setupActivityIndicator()
         viewModel.viewStateBinding.bind { [unowned self] viewState in
@@ -32,16 +36,19 @@ class ListViewController: UIViewController {
         }
         viewModel.intent = UserIntent.newData
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        title = "List"
+    }
 
     private func setupTableView() {
         tableView = UITableView()
+        tableView.rowHeight = 60
         let footerView = UIView()
         footerView.backgroundColor = UIColor.clear
         tableView.tableFooterView = footerView
         tableView.register(ListTableViewCell.self, forCellReuseIdentifier: ListTableViewCell.identifier)
-//        if #available(iOS 11.0, *) {
-//            tableView?.contentInsetAdjustmentBehavior = .never
-//        }
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make -> Void in
             make.edges.equalTo(view)
@@ -55,10 +62,6 @@ class ListViewController: UIViewController {
         view.addSubview(activityIndicator)
         activityIndicator.frame = view.frame
         activityIndicator.backgroundColor = UIColor.init(white: 0, alpha: 0.3)
-//        activityIndicator.snp.makeConstraints { make -> Void in
-//            make.center.equalTo(view)
-//        }
-//        activityIndicator.stopAnimating()
     }
     
     private func showActivityIndicator() {
@@ -74,6 +77,9 @@ class ListViewController: UIViewController {
             activityIndicator.stopAnimating()
             showAlert(message: message)
         case .loadData:
+            if viewModel.challengeData.count > 0 {
+                lvcDelegate?.didSelectItem(viewModel.challengeData[0])
+            }
             tableView.reloadData()
             fallthrough
         default:
@@ -87,17 +93,6 @@ class ListViewController: UIViewController {
         alertVC.addAction(action)
         self.present(alertVC, animated: true, completion: nil)
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 extension ListViewController: UITableViewDataSource {
@@ -110,14 +105,23 @@ extension ListViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         let data = viewModel.challengeData[indexPath.row]
-        cell.setupCell(type: data.type ?? "",
-                       date: data.date ?? "",
-                       description: data.data ?? "")
+        cell.setupCell(type: data.type,
+                       date: data.date,
+                       description: data.data)
         return cell
     }
 }
 
 extension ListViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let data = viewModel.challengeData[indexPath.row]
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            let detailVC = DetailViewController()
+            detailVC.viewModel = DetailViewModel(data: data)
+            navigationController?.pushViewController(detailVC, animated: false)
+        } else {
+            lvcDelegate?.didSelectItem(data)
+        }
+    }
 }
 
