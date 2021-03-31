@@ -8,7 +8,7 @@
 import Foundation
 
 class ListViewModel {
-    private(set) var challengeData = [ChallengeData]()
+    private(set) var challengeData: [ChallengeData]
     
     enum ViewState {
         case loading
@@ -49,8 +49,9 @@ class ListViewModel {
         }
     }
     
-    init() {
-        viewStateBinding = Box(ViewState.none)
+    init(viewState: ViewState, data: [ChallengeData] = []) {
+        challengeData = data
+        viewStateBinding = Box(viewState)
     }
 }
 
@@ -94,6 +95,23 @@ extension ListViewModel {
             }
             let message = error?.localizedDescription ?? "Failed to retrieve data"
             completion(.error(message))
+        }
+    }
+}
+
+extension ListViewModel.ViewState: Equatable {
+    static func ==(lhs: ListViewModel.ViewState, rhs: ListViewModel.ViewState) -> Bool {
+        switch (lhs, rhs) {
+        case (.none, .none):
+            return true
+        case (.loading, .loading):
+            return true
+        case (.loadData, .loadData):
+            return true
+        case (.error(let text1), .error(let text2)):
+            return text1 == text2
+        default:
+            return false
         }
     }
 }

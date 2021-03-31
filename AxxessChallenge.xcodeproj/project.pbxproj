@@ -12,12 +12,13 @@
 		2F2B8EDB26139DE600F5C528 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2B8EDA26139DE600F5C528 /* UIExtensions.swift */; };
 		2F2B8F2E2614EDB800F5C528 /* RealmHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2B8F2D2614EDB800F5C528 /* RealmHelper.swift */; };
 		2F2B8F332614EE7600F5C528 /* NetworkUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2B8F322614EE7600F5C528 /* NetworkUtil.swift */; };
+		2F2B8F522615181F00F5C528 /* ListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2B8F512615181F00F5C528 /* ListViewModelTests.swift */; };
+		2F2B8F5A26152DF300F5C528 /* ChallengeServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2B8F5926152DF300F5C528 /* ChallengeServiceTests.swift */; };
 		2F9D3930260F8F4B00E59CD3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9D392F260F8F4B00E59CD3 /* AppDelegate.swift */; };
 		2F9D3932260F8F4B00E59CD3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9D3931260F8F4B00E59CD3 /* SceneDelegate.swift */; };
 		2F9D3937260F8F4B00E59CD3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F9D3935260F8F4B00E59CD3 /* Main.storyboard */; };
 		2F9D3939260F8F4D00E59CD3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F9D3938260F8F4D00E59CD3 /* Assets.xcassets */; };
 		2F9D393C260F8F4D00E59CD3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F9D393A260F8F4D00E59CD3 /* LaunchScreen.storyboard */; };
-		2F9D3947260F8F4D00E59CD3 /* AxxessChallengeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9D3946260F8F4D00E59CD3 /* AxxessChallengeTests.swift */; };
 		2F9D3952260F8F4D00E59CD3 /* AxxessChallengeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9D3951260F8F4D00E59CD3 /* AxxessChallengeUITests.swift */; };
 		2F9D3981260FC10B00E59CD3 /* ChallengeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9D3980260FC10B00E59CD3 /* ChallengeData.swift */; };
 		2F9D398E260FC69500E59CD3 /* NetworkCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9D398D260FC69500E59CD3 /* NetworkCall.swift */; };
@@ -63,6 +64,8 @@
 		2F2B8EDA26139DE600F5C528 /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
 		2F2B8F2D2614EDB800F5C528 /* RealmHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmHelper.swift; sourceTree = "<group>"; };
 		2F2B8F322614EE7600F5C528 /* NetworkUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtil.swift; sourceTree = "<group>"; };
+		2F2B8F512615181F00F5C528 /* ListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModelTests.swift; sourceTree = "<group>"; };
+		2F2B8F5926152DF300F5C528 /* ChallengeServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeServiceTests.swift; sourceTree = "<group>"; };
 		2F9D392C260F8F4B00E59CD3 /* AxxessChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AxxessChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F9D392F260F8F4B00E59CD3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2F9D3931260F8F4B00E59CD3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -71,7 +74,6 @@
 		2F9D393B260F8F4D00E59CD3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2F9D393D260F8F4D00E59CD3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2F9D3942260F8F4D00E59CD3 /* AxxessChallengeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AxxessChallengeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2F9D3946260F8F4D00E59CD3 /* AxxessChallengeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AxxessChallengeTests.swift; sourceTree = "<group>"; };
 		2F9D3948260F8F4D00E59CD3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2F9D394D260F8F4D00E59CD3 /* AxxessChallengeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AxxessChallengeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F9D3951260F8F4D00E59CD3 /* AxxessChallengeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AxxessChallengeUITests.swift; sourceTree = "<group>"; };
@@ -181,7 +183,8 @@
 		2F9D3945260F8F4D00E59CD3 /* AxxessChallengeTests */ = {
 			isa = PBXGroup;
 			children = (
-				2F9D3946260F8F4D00E59CD3 /* AxxessChallengeTests.swift */,
+				2F2B8F512615181F00F5C528 /* ListViewModelTests.swift */,
+				2F2B8F5926152DF300F5C528 /* ChallengeServiceTests.swift */,
 				2F9D3948260F8F4D00E59CD3 /* Info.plist */,
 			);
 			path = AxxessChallengeTests;
@@ -552,7 +555,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F9D3947260F8F4D00E59CD3 /* AxxessChallengeTests.swift in Sources */,
+				2F2B8F522615181F00F5C528 /* ListViewModelTests.swift in Sources */,
+				2F2B8F5A26152DF300F5C528 /* ChallengeServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -762,8 +766,9 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z8Q3QPW9ZU;
 				INFOPLIST_FILE = AxxessChallengeTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -784,8 +789,9 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z8Q3QPW9ZU;
 				INFOPLIST_FILE = AxxessChallengeTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -805,6 +811,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z8Q3QPW9ZU;
 				INFOPLIST_FILE = AxxessChallengeUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -825,6 +832,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z8Q3QPW9ZU;
 				INFOPLIST_FILE = AxxessChallengeUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

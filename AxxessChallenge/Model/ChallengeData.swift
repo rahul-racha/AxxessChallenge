@@ -14,12 +14,18 @@ class ChallengeData: Object, Decodable, NSCopying {
     @objc dynamic var date: String?
     @objc dynamic var data: String?
     
+    override init() {
+        super.init()
+    }
+    
+    init(id: String?, type: String?, date: String?, data: String?) {
+        self.id = id
+        self.type = type
+        self.date = date
+        self.data = data
+    }
+    
     func copy(with zone: NSZone? = nil) -> Any {
-        let new = ChallengeData()
-        new.id = id
-        new.type = type
-        new.date = date
-        new.data = data
-        return new
+        return ChallengeData(id: id, type: type, date: date, data: data)
     }
 }
