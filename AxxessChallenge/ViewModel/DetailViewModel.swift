@@ -21,6 +21,12 @@ class DetailViewModel {
 }
 
 extension DetailViewModel: ListViewControllerDelegate {
+    /**
+     Updates binding value to ViewState.success to trigger listener
+     
+     - parameters:
+        - data: ChallengeData selected by the user
+     */
     func didSelectItem(_ data: ChallengeData) {
         viewStateBinding.value = ViewState.success(data)
     }

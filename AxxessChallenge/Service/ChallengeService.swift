@@ -11,6 +11,9 @@ class ChallengeService {
     private init() {}
     static let shared = ChallengeService()
     
+    /**
+     Service layer that coordinates the network call and response between networking and view model
+     */
     func getData(success: @escaping ([ChallengeData]?) -> Void,
                  failure: @escaping (Error?) -> Void) {
         NetworkCall().execute(method: .get, url: ApiUriConstants.challengeData) { (result: Result<[ChallengeData]?, Error>?) -> Void in

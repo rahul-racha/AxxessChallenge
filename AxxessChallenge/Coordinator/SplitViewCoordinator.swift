@@ -14,6 +14,10 @@ class SplitViewCoordinator: Coordinator {
         self.splitVC = splitViewController
     }
     
+    /**
+     Creates Primary and Secondary View Controller instances for SplitViewController.
+      This is called before SplitViewController's view is loaded.
+     */
     func start() {
         let listVC = ListViewController()
         listVC.viewModel = ListViewModel(viewState: .none)

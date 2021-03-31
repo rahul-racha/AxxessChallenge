@@ -15,6 +15,9 @@ class ApplicationCoordinator: Coordinator {
         self.window = window
     }
     
+    /**
+     Main Application Coordinator start() that sets roots view for a  window and makes it available
+     */
     func start() {
         let splitViewController = SplitViewController()
         splitViewCoordinator = SplitViewCoordinator(splitViewController)

@@ -70,6 +70,9 @@ class ListViewController: UIViewController {
         activityIndicator.backgroundColor = UIColor.init(white: 0, alpha: 0.3)
     }
     
+    /**
+     Triggers when the user taps the sort button on the nav bar
+     */
     @objc func sortTapped(_ sender: UIBarButtonItem?) {
         let actionSheet = UIAlertController(title: "Sort", message: "Select an option to sort by 'type'", preferredStyle: .actionSheet)
         let ascOption = UIAlertAction(title: "Ascending", style: .default) { [weak self] _ in
@@ -98,6 +101,13 @@ class ListViewController: UIViewController {
         activityIndicator.startAnimating()
     }
     
+    /**
+     This View Controller's state listener calls the function.
+     Updates UI to view state passed as argument
+     
+     - parameters:
+        - viewState: ListViewModel's view state
+     */
     private func updateViewState(_ viewState: ListViewModel.ViewState) {
         switch viewState {
         case .loading:

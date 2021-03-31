@@ -32,6 +32,11 @@ class SplitViewController: UISplitViewController {
 }
 
 extension SplitViewController: UISplitViewControllerDelegate {
+    /**
+     Tells if the secondary view controller should collapse or not.
+     The initial data in detail view is empty, so the the secondary view controller is pervented from showing first
+     in horizontal compact class devices
+     */
     func splitViewController(_ splitViewController: UISplitViewController,
       collapseSecondary secondaryViewController: UIViewController,
       onto primaryViewController: UIViewController) -> Bool {

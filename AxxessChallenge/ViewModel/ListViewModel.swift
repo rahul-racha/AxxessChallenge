@@ -56,6 +56,12 @@ class ListViewModel {
 }
 
 extension ListViewModel {
+    /**
+    ChallengeData is sorted either in ascending or descending order
+     
+     - parameters:
+        - isAscending: true if the sorted order must be ascending else false
+     */
     func sortData(isAscending: Bool) {
         let temp: [ChallengeData]
         if isAscending {
@@ -66,6 +72,15 @@ extension ListViewModel {
         challengeData = temp
     }
     
+    /**
+     Returns a new sorted array of ChallengeData
+      
+     - returns:
+        A sorted array of ChallengeData objects
+     - parameters:
+            - data: the input array whose contents are to be sorted
+            - isAscending: true if the sorted order must be ascending else false
+     */
     func sortedData(data: [ChallengeData], isAscending: Bool) -> [ChallengeData] {
         if isAscending {
             return data.sorted { $0.type ?? "" < $1.type ?? "" }
@@ -73,6 +88,10 @@ extension ListViewModel {
         return data.sorted { $0.type ?? "" > $1.type ?? "" }
     }
     
+    /**
+     Handles API endpoint response and returns a ViewState through completion handler.
+     Persists new response to Realm database.
+     */
     func getDataViewState(completion: @escaping (ViewState) -> Void) {
         ChallengeService.shared.getData { [weak self] data in
             guard let weakSelf = self else { return }

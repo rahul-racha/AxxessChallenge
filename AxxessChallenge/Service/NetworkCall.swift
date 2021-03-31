@@ -8,6 +8,14 @@
 import Alamofire
 
 class NetworkCall {
+    /**
+     Deserializes the API endpoint response to the model object, T
+     
+     - returns:
+        Result state (success, error)
+     - parameters:
+        - response: AFDataResponse returned from Alamofire responseData API
+     */
     private func decodeResponse<T>(_ response: AFDataResponse<Data>) -> Result<T?, Error> where T: Decodable {
         switch response.result {
         case .success(let data):
@@ -28,6 +36,16 @@ class NetworkCall {
         }
     }
     
+    /**
+     Executes request query from service layer and returns a response.
+     
+     - parameters:
+        - method: HTTPMethod (GET, PUT, POST, DEL)
+        - url: the request url string
+        - parameters: The body parameters for a HTTP request
+        - completion: calls the handler with argument, Result
+     
+     */
     func execute<T>(method: HTTPMethod, url: String, parameters: [String: Any]? = nil,
                 completion: @escaping (Result<T?, Error>?) -> Void) where T: Decodable {
         if !NetworkUtil.isConnectedToInternet {

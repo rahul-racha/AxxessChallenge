@@ -6,7 +6,10 @@
 //
 
 import Foundation
-
+/**
+ Binding between a View Model and its View Controller
+ can be implemented using Boxing
+ */
 class Box<T> {
     typealias Listner = (T) -> Void
     var listner: Listner?
