@@ -116,12 +116,15 @@ class ListViewController: UIViewController {
             activityIndicator.stopAnimating()
             showAlert(message: message)
         case .loadData:
+            tableView.reloadData()
             if viewModel.challengeData.count > 0 {
                 lvcDelegate?.didSelectItem(viewModel.challengeData[0])
+                if UIDevice.current.userInterfaceIdiom == .pad {
+                    tableView.selectRow(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .top)
+                }
             } else {
                 showAlert(message: "No saved data found")
             }
-            tableView.reloadData()
             fallthrough
         default:
             activityIndicator.stopAnimating()

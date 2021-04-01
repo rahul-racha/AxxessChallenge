@@ -110,12 +110,8 @@ class ImageTypeView: UIView {
     
     func setupConstraints() {
         imageView.snp.makeConstraints { make in
-            if UIDevice.current.userInterfaceIdiom == .phone {
-                make.width.equalTo(200)
-                make.centerX.equalToSuperview()
-            } else {
-                make.left.right.equalToSuperview().inset(150)
-            }
+            make.width.equalTo(250)
+            make.centerX.equalToSuperview()
             make.top.equalToSuperview().offset(20)
             make.height.equalTo(imageView.snp.width).multipliedBy(1 / 1)
         }

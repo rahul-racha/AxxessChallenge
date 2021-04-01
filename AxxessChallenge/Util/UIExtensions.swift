@@ -10,7 +10,7 @@ import UIKit
 extension UILabel {
     static func getDefault(isBold: Bool = false,
                            size: CGFloat = 14,
-                           textColor: UIColor = UIColor.lightGray,
+                           textColor: UIColor = UIColor.darkGray,
                            lines: Int = 1,
                            textAlignment: NSTextAlignment = .left) -> UILabel {
         let label = UILabel()
